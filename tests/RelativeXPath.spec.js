@@ -23,4 +23,10 @@ test("verify Login with valid credentials", async({page}) => {
     // Partial text
     await page.locator("//button[contains(.,'Add')]").click();
     await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/pim/addEmployee")
-})
+
+    // AND 
+    await page.locator("//input[@name='firstName' and @placeholder='First Name']").fill("John");
+    await page.locator("//input[@name='lastName']").fill("Wick");  
+    await page.locator("//button[contains(.,'Save')]").click();
+    await expect(page.locator("//h6[contains(.,'Personal Details')]")).toHaveText('Personal Details')
+ })
