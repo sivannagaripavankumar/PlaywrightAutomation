@@ -50,11 +50,13 @@ test(`Add employee With Data Driven Testcases - ${employee}`, async ({ page }) =
    // check addemployee navigation
    await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/pim/addEmployee")
 
-   // fill the details
+   let randomchars = (Math.random() + 1).toString(36).substring(7);
+    
+    // fill the details
    await page.locator("input[name='firstName']").fill(data['First_name '])
    await page.locator("input.oxd-input.oxd-input--active.orangehrm-middlename").fill(data.Middle_name)
    await page.locator("input[placeholder='Last Name']").fill(data.Last_name)
-   await page.locator("(//input[@class='oxd-input oxd-input--active'])[2]").fill(data['Employee Id'])
+   await page.locator("(//input[@class='oxd-input oxd-input--active'])[2]").fill(AddEmployees[employee]['Employee Id'] + randomchars)
    await page.locator("button[type='submit']").click()
    
    // check full name is visible after creating employee
